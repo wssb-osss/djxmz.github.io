@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米粥的网站</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffffff, #87CEEB);
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #00509e;
+            margin-top: 50px;
+        }
+
+        .button {
+            display: block;
+            background-color: #00509e;
+            color: white;
+            text-align: center;
+            margin: 10px auto;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #003f6b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .small-text {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: black;
+        }
+
+        .corner-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00509e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 樱花掉落动画 */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh); /* 樱花从顶部外开始 */
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh); /* 掉落到页面底部 */
+                opacity: 0;
+            }
+        }
+
+        .blossom {
+            position: absolute;
+            color: pink;
+            font-size: 12px;
+            animation: fall 5s infinite;
+        }
+
+        /* 添加语录的CSS样式 */
+        .quote {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            margin: 50px 0; /* 上下外边距，可以根据需要调整 */
+            white-space: nowrap; /* 避免换行 */
+            overflow: hidden; /* 隐藏超出部分 */
+            border-right: 4px solid; /* 光标效果 */
+            animation: typing 5s steps(30) forwards, blink-caret 0.75s step-end infinite; /* 打字效果和光标闪烁 */
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: black; }
+        }
+
+        /* 美化确认按钮的样式 */
+        .confirm-button {
+            background-color: #4CAF50; /* 绿色背景 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button:hover {
+            background-color: #45a049; /* 深绿色背景 */
+        }
+
+        /* 音乐播放器样式 */
+        .music-player {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: #00509e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-player button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .music-player button:hover {
+            color: #87CEEB;
+        }
+
+        .music-player img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .music-player.no-rotation img {
+            animation: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>小米粥的网站</h1>
+    
+    <button class="button" onclick="window.open('https://www.123pan.cn/s/j1EBjv-gNrA3', '_blank')">我制作的小东东</button>
+    <button class="button" onclick="window.open('https://www.123pan.cn/s/j1EBjv-FNrA3', '_blank')">工具分享</button>
+    <button class="button" onclick="window.open('https://www.123pan.cn/s/j1EBjv-YNrA3', '_blank')">模组分享</button>
+    <button class="button" onclick="window.open('https://space.bilibili.com/2036031763?spm_id_from=333.1007.0.0', '_blank')">关注我的哔哩哔哩账号</button>
+    <button class="button" id="aboutBtn">关于我</button>
+
+    <div class="small-text">中国万岁</div>
+    
+    <button class="corner-button" onclick="window.open('https://arcxingye.github.io/r18/', '_blank')">好康的</button>
+
+    <!-- 卡密输入弹窗 -->
+    <div id="keyInputModal" class="modal">
+        <div class="modal-content">
+            <h2>输入卡密</h2>
+            <input type="text" id="keyInput" placeholder="请输入卡密" />
+            <button class="confirm-button" onclick="checkKey()">确认</button> <!-- 美化后的确认按钮 -->
+            <p id="errorMessage" style="color: red;"></p>
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>小米粥</h2>
+            <p>一个up罢了</p>
+        </div>
+    </div>
+
+    <!-- 添加语录 -->
+    <p class="quote" id="quote"></p>
+
+    <!-- 音乐播放器 -->
+    <div class="music-player" id="musicPlayer">
+        <button id="playPauseButton">⏸️</button>
+        <button id="nextButton">下一曲</button>
+        <span id="musicTitle">Playing: 牢大小曲</span>
+        <img src="http://p1.music.126.net/B5KWVNM-JOWtHYNcuzqRrA==/109951167977320136.jpg?param=100x100" alt="音乐图片" id="rotatingImage">
+        <audio id="audioPlayer" autoplay loop></audio>
+    </div>
+
+    <script>
+        // 定义歌曲列表
+        const songs = [
+            {
+                title: '牢大小曲',
+                src: 'https://m10.music.126.net/20240825194408/41a9e82f3efdc162b9f6de01440b4c0d/ymusic/5409/0153/070c/cc027bc7e069bff526670fed91cc6d99.mp3',
+                image: 'http://p1.music.126.net/B5KWVNM-JOWtHYNcuzqRrA==/109951167977320136.jpg?param=100x100'
+            },
+            {
+                title: '炫酷小曲',
+                src: 'http://m10.music.126.net/20240825201951/0b1d1fe715a7a5ebe16366a55156d166/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/13444302046/7d66/1ee0/ad64/bcc493851bd18995120d5b83fd9af411.mp3',
+                image: 'http://p1.music.126.net/B5KWVNM-JOWtHYNcuzqRrA==/109951167977320136.jpg?param=100x100'
+            }
+        ];
+
+        let currentSongIndex = 0;
+
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseButton = document.getElementById('playPauseButton');
+        const nextButton = document.getElementById('nextButton');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const rotatingImage = document.getElementById('rotatingImage');
+        const musicTitle = document.getElementById('musicTitle');
+
+        function loadSong(index) {
+            const song = songs[index];
+            audioPlayer.src = song.src;
+            rotatingImage.src = song.image; // 更新图片链接
+            musicTitle.textContent = 'Playing: ' + song.title;
+            audioPlayer.play();
+            playPauseButton.innerHTML = '⏸️';
+            musicPlayer.classList.remove('no-rotation');
+        }
+
+        function togglePlayPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.innerHTML = '⏸️';
+                musicPlayer.classList.remove('no-rotation');
+            } else {
+                audioPlayer.pause();
+                playPauseButton.innerHTML = '▶️';
+                musicPlayer.classList.add('no-rotation');
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+        }
+
+        playPauseButton.onclick = togglePlayPause;
+        nextButton.onclick = nextSong;
+
+        // 初始化播放第一首歌曲
+        loadSong(currentSongIndex);
+
+        // 弹窗
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        document.getElementById('aboutBtn').onclick = openModal;
+
+        // 卡密输入
+        function checkKey() {
+            const input = document.getElementById('keyInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            if (input === '正确卡密') {
+                alert('卡密正确!');
+                closeModal();
+            } else {
+                errorMessage.textContent = '卡密错误，请重新输入。';
+            }
+        }
+
+        // 设置随机的樱花
+        function createBlossom() {
+            const blossom = document.createElement('div');
+            blossom.className = 'blossom';
+            blossom.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+            blossom.style.top = Math.random() * -100 + 'vh'; // 从屏幕外部开始
+            blossom.textContent = '🌸'; // 樱花表情符号
+            document.body.appendChild(blossom);
+
+            // 移除已完成的樱花
+            setTimeout(() => {
+                document.body.removeChild(blossom);
+            }, 5000); // 根据动画时长设置移除时间
+        }
+
+        // 定时生成樱花
+        setInterval(createBlossom, 300); // 每300毫秒生成一朵樱花
+
+        // 设置语录
+        document.getElementById('quote').textContent = "伟大的梦想始于平凡的起点。";
+    </script>
+</body>
+</html>
